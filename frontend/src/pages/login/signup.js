@@ -86,9 +86,7 @@ export default function Login() {
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Nom*</Form.Label>
-
-
-
+          <Form.Control type="text" placeholder="Entre votre nom" value={name} onChange={(e) => { setName(e.target.value) }} />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Prénom*</Form.Label>

@@ -5,6 +5,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Services from './pages/services';
 import Contact from './pages/contact';
+import AddEmployee from './pages/admin/addEmployee'
 import Navbar2 from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from './pages/login/auth';
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <Navbar2 />
       <Switch>
+        <Route path='/admin/addEmployee' exact component={AddEmployee} />
         <Route path='/' exact component={Home} />
         <Route path='/about' component={About} />
         <Route path='/services' component={Services} />
