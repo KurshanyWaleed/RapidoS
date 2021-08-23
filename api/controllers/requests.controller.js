@@ -2,7 +2,19 @@ const ReqModel = require("../models/requests");
 const EmployeeModel = require("../models/employee");
 
 
+module.exports.getAllTasks = async (req, res) => {
+    // console.log(req.body)
+    const { id } = req.body;
+    // var password = Math.random().toString(36).slice(-8);
+    try {
+        const tasks = await ReqModel.find({ employee: id });
+        res.status(201).send(tasks);
+    } catch (err) {
+        console.log(err)
 
+        res.status(200).send({ err });
+    }
+};
 module.exports.addReq = async (req, res) => {
 
     const { name,

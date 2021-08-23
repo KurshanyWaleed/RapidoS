@@ -1,16 +1,17 @@
-const UserModel = require("../models/users");
+
 const jwt = require("jsonwebtoken");
 const { signUpErrors, signInErrors } = require("../utils/errors");
 
+require('dotenv').config();
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.TOKEN_SECRET, {
+const createToken = (data) => {
+    return jwt.sign({ data }, process.env.TOKEN_SECRET, {
         expiresIn: maxAge,
     });
 };
-
+//! User SignUp
 module.exports.signUp = async (req, res) => {
     console.log(req.body)
     const { name, surname, email, password, address, tel, form, companyName, town, zip, gouvernarate } = req.body;
@@ -26,22 +27,68 @@ module.exports.signUp = async (req, res) => {
     }
 };
 
-module.exports.signIn = async (req, res) => {
-    const { email, password } = req.body;
-    console.log(req.body);
+//! Admin SignUp
+module.exports.signUpAdmin = async (req, res) => {
+    console.log(req.body)
+    const { CIN, name, password, } = req.body;
+    const AdminModel = require("../models/admin");
 
     try {
-        const user = await UserModel.login(email, password);
-        const token = createToken(user._id);
-        res.cookie("jwt", token, { httpOnly: true, maxAge });
-        res.status(200).json({ user: user._id });
+        const user = await AdminModel.create({ CIN, name, password });
+        res.status(201).json({ user: user._id });
     } catch (err) {
-        const errors = signInErrors(err);
-        res.status(200).json({ errors });
+        console.log(err)
+        const errors = signUpErrors(err);
+        res.status(200).send({ errors });
     }
 };
 
+module.exports.signIn = async (req, res) => {
+    const { CIN, email, password, type } = req.body;
+    console.log('body : ', type);
+    if (type === 'Client') {
+
+        const UserModel = require("../models/users");
+        try {
+            const user = await UserModel.login(email, password);
+            const token = createToken(user._id, name);
+            res.cookie("jwt", token, { httpOnly: true, maxAge });
+            res.status(200).json({ user: user._id, token: token });
+        } catch (err) {
+            const errors = signInErrors(err);
+            res.status(200).json({ errors });
+        }
+    } else if (type === 'Admin') {
+
+        const AdminModel = require("../models/admin");
+        try {
+            const user = await AdminModel.login(CIN, password);
+            const { _id, name } = user;
+            console.log('type : ', type);
+            const token = createToken({ _id, name });
+            // res.cookie("jwt", token, { httpOnly: true, maxAge });
+            res.status(201).send({ id: user._id, name: user.name, token: token, type: type });
+        } catch (erro) {
+            // const errors = signInErrors(err);
+            res.status(200).json({ erro });
+
+        }
+    } else {
+        try {
+            const EmployeeModel = require("../models/employee");
+            const user = await EmployeeModel.login(CIN, password);
+            const token = createToken(user._id, name);
+            res.cookie("jwt", token, { httpOnly: true, maxAge });
+            res.status(200).json({ user: user._id, token: token });
+        } catch (err) {
+            const errors = signInErrors(err);
+            res.status(200).json({ errors });
+        }
+
+
+    };
+}
 module.exports.logout = (req, res) => {
     res.cookie("jwt", "", { maxAge: 1 });
     res.redirect("/");
-};
+}

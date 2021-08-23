@@ -40,16 +40,17 @@ employeeSchema.pre("save", async function (next) {
     next();
 });
 
-employeeSchema.statics.login = async function (email, password) {
-    const Employee = await this.findOne({ email });
-    if (Employee) {
-        const auth = await bcrypt.compare(password, Employee.password);
+employeeSchema.statics.login = async function (CIN, password) {
+    const employee = await this.findOne({ CIN });
+    console.log('the employee : ', employee)
+    if (employee) {
+        const auth = await bcrypt.compare(password, employee.password);
         if (auth) {
-            return Employee;
+            return employee;
         }
         throw Error('incorrect password');
     }
-    throw Error('incorrect email')
+    throw Error('incorrect CIN')
 };
 
 const EmployeeModel = mongoose.model("employees", employeeSchema);
