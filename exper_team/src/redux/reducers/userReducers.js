@@ -16,7 +16,7 @@ export const getUserReducer = (state = initialState, action) => {
                 token: localStorage.getItem('jwt'),
                 isAuthenticated: null,
                 isLoading: false,
-                user: {}
+                user: null
             };
         case Actions.USER_LOADING:
             return {
