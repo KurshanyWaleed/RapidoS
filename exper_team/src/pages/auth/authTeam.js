@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import './log/style.css';
+import './style.css';
 import { useHistory } from 'react-router';
 import { loginUser } from '../../redux/actions/Auth_actions';
 import Loading from '../../components/Loading';

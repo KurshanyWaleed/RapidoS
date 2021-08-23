@@ -50,9 +50,6 @@ export const checkUsersigned = () => (dispatch) => {
 
 }
 
-
-
-
 export const logout = () => (dispatch) => {
     localStorage.removeItem('token');
     dispatch({ type: Actions.LOGOUT_SUCCESS });

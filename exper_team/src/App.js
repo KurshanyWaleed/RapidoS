@@ -2,10 +2,10 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Navbar from './components/Navbar/index'
-import Home_emp from './pages/admin/Employee/home_emp'
+import Home_emp from './pages//Employee/home_emp'
 import AddEmployee from './pages/admin/addEmployee'
 import Employee_details from './pages/admin/employeedetails'
-import AuthTeam from './pages/admin/authTeam'
+import AuthTeam from './pages/auth/authTeam'
 import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';

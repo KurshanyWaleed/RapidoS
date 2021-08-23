@@ -6,7 +6,7 @@ import {
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Select from 'react-bootstrap/FormSelect'
 import axios from 'axios';
-import Employees from './employeesCard'
+import Employees from '../../components/employeesCard'
 import Loader from "react-loader-spinner";
 
 
@@ -18,7 +18,7 @@ const AddEmployee = () => {
     const [name, setName] = useState("");
     const [gouvernarate, setGouvernarate] = useState("Tunis");
     const [loading, setLoading] = useState(false);
-    const [valid, setValid] = useState(false);
+    // const [valid, setValid] = useState(false);
     const [CIN, setCIN] = useState("");
     const [employeesL, setEmployeesL] = useState([{}]);
 
