@@ -3,7 +3,7 @@ import axios from 'axios'
 import jwtDecode from "jwt-decode";
 
 // Check token & load user
-export const loginUser = (CIN, password, typeUser) => (dispatch, getState) => {
+export const loginUser = (CIN, password, typeUser) => (dispatch) => {
     // User loading
     dispatch({ type: Actions.USER_LOADING });
 

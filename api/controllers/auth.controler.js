@@ -77,9 +77,10 @@ module.exports.signIn = async (req, res) => {
         try {
             const EmployeeModel = require("../models/employee");
             const user = await EmployeeModel.login(CIN, password);
-            const token = createToken(user._id, name);
-            res.cookie("jwt", token, { httpOnly: true, maxAge });
-            res.status(200).json({ user: user._id, token: token });
+            const { _id, name } = user;
+            const token = createToken({ _id, name, type });
+            // res.cookie("jwt", token, { httpOnly: true, maxAge });
+            res.status(200).json({ id: user._id, token: token, type: type, name: name });
         } catch (err) {
             const errors = signInErrors(err);
             res.status(200).json({ errors });

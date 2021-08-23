@@ -13,10 +13,10 @@ import { checkUsersigned } from './redux/actions/Auth_actions'
 
 
 
-
 function App() {
   const dispatch = useDispatch()
-  const token = useSelector((state => state.token ? state.token : null))
+  const token = localStorage.getItem('token')
+  const type = useSelector((state => state.user ? state.user.type : ''))
   console.log('the toooooooken', token)
 
   useEffect(() => {
@@ -28,29 +28,35 @@ function App() {
   return (
 
     <div >
-      {(token === null) ?
-        <Router>
-          <Navbar />
-          <Switch>
-            <Route path='/login' component={AuthTeam} />
-            <Route path="/">
-              <Redirect to="/login" />
-            </Route>
-          </Switch>
-        </Router> :
-        <Router>
-          <Navbar />
-          <Switch>
-            <Route path='/employees/home/:id' exact component={Home_emp} />
-            <Route path='/admin/addEmployee' exact component={AddEmployee} />
-            <Route path='/admin/Employee/:id' exact component={Employee_details} />
-            <Route path="/">
-              <Redirect to="/admin/addEmployee" />
-            </Route>
-          </Switch>
-        </Router>
+      <Router>
+        <Navbar />
+        <Switch>
+          {
+            token === null ?
+              <>
+                <Route path='/login' exact component={AuthTeam} />
+                <Route path="/">
+                  <Redirect to="/login" />
+                </Route>
+              </>
+              :
+              type === 'Employee' ?
+                <>
+                  <Route path='/Home_emp' exact component={Home_emp} />
+                  <Route path="*">
+                    <Redirect to="/Home_emp" />
+                  </Route>
+                </> : <>
+                  <Route path='/admin/Add_emp' exact component={AddEmployee} />
+                  <Route path='/admin/employee/details/:id' exact component={Employee_details} />
+                  <Route path="*">
+                    <Redirect to="/admin/add_emp" />
+                  </Route>
+                </>
+          }
+        </Switch>
 
-      }
+      </Router>
     </div>
 
   );

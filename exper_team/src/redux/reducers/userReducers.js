@@ -24,14 +24,12 @@ export const getUserReducer = (state = initialState, action) => {
                 isLoading: true
             };
         case Actions.USER_LOADED:
-            const token = localStorage.getItem('token');
-
             return {
                 ...state,
                 token: action.token,
                 isAuthenticated: true,
                 isLoading: false,
-                user: { id: action.user.data._id, name: action.user.data.name }
+                user: { id: action.user.data._id, name: action.user.data.name, type: action.user.data.type }
 
             };
 

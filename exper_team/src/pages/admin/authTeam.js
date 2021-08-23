@@ -21,11 +21,11 @@ const AuthTeam = () => {
 
     const handelForminputs = (e) => {
         e.preventDefault();
-        // const data = { cin, password, type: 'Admin' }
-        // console.log(data)
         setLoading(true);
         dispatch(loginUser(CIN, password, typeUser));
-        typeUser === "Admin" ? history.push('/admin/addEmployee') : history.push(`/employees/home/${id}`);
+        if (type === "Admin") history.push('/admin/addEmployee')
+        if (type === 'Empolyee') history.push(`/employees/home/${id}`);
+        console.log(typeUser)
         setLoading(false);
     };
 
