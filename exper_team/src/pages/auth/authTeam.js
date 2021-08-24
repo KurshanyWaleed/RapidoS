@@ -4,15 +4,17 @@ import './style.css';
 import { useHistory } from 'react-router';
 import { loginUser } from '../../redux/actions/Auth_actions';
 import Loading from '../../components/Loading';
+import { loadTasks } from '../../redux/actions/requestes-actions';
+
 //import Select from 'react-bootstrap/FormSelect'
 //import store from '../../redux/store'
 
 const AuthTeam = () => {
     const dispatch = useDispatch();
-    const type = useSelector((state => state.user ? state.user.type : ''))
-    const errorEmail = useSelector((state => state.error ? state.error.errors.email : ''))
-    const errorPass = useSelector((state => state.error ? state.error.errors.password : ''))
-    const id = useSelector((state => state.user ? state.user.id : ''))
+    const type = useSelector((state => state.users.user ? state.users.user.type : ''))
+    const errorEmail = useSelector((state => state.users.error ? state.users.error.errors.email : ''))
+    const errorPass = useSelector((state => state.users.error ? state.users.error.errors.password : ''))
+    const id = useSelector((state => state.users.user ? state.users.user.id : ''))
     const [loading, setLoading] = useState(false)
     const [CIN, setCin] = useState('')
     const [password, setPassword] = useState('')
@@ -24,9 +26,14 @@ const AuthTeam = () => {
         e.preventDefault();
         if (CIN === '' && password === '') { setNotvalid(true) } else {
             setLoading(true);
+            console.log('type:', type)
             dispatch(loginUser(CIN, password, typeUser));
             if (type === "Admin") history.push('/admin/addEmployee')
-            if (type === 'Empolyee') history.push(`/employees/home/${id}`);
+            if (type === 'Empolyee') {
+                history.push(`/employees/home/${id}`);
+                //dispatch((loadTasks(id))
+                ;
+            };
             console.log(typeUser)
             setLoading(false);
         }

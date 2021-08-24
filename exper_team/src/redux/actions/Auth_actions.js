@@ -7,7 +7,7 @@ export const loginUser = (CIN, password, typeUser) => (dispatch) => {
     // User loading
 
     dispatch({ type: Actions.USER_LOADING });
-    console.log('here', CIN === '', password === '', CIN === '' && password === '')
+    console.log('here', CIN === '' || password === '')
     if ((CIN === '' || password === '')) {
         dispatch({
             type: Actions.LOGIN_FAIL,

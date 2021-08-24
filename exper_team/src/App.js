@@ -17,7 +17,7 @@ import NotFound from './pages/notFound'
 function App() {
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
-  const type = useSelector((state => state.user ? state.user.type : ''))
+  const type = useSelector((state => state.users.user ? state.users.user.type : ''))
   console.log('the toooooooken', token)
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const initialState = {
     error: null
 };
 
-export const getUserReducer = (state = initialState, action) => {
+const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case Actions.LOGOUT_SUCCESS:
             return {
@@ -62,3 +62,4 @@ export const getUserReducer = (state = initialState, action) => {
 
     }
 }
+export default UserReducer

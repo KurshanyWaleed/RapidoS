@@ -8,7 +8,8 @@ module.exports.getAllTasks = async (req, res) => {
     // var password = Math.random().toString(36).slice(-8);
     try {
         const tasks = await ReqModel.find({ employee: id });
-        res.status(201).send(tasks);
+        lng = tasks.length;
+        res.status(201).json(tasks);
     } catch (err) {
         console.log(err)
 

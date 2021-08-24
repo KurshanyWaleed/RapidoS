@@ -10,7 +10,7 @@ import { logout } from '../../redux/actions/Auth_actions'
 const Nav = () => {
   //const [valid, setValid] = useState(false);
   const dispatch = useDispatch()
-  const userName = useSelector((state => state.user ? state.user.name : ''))
+  const userName = useSelector((state => state.users.user ? state.users.user.name : ''))
   const style = {
     padding: '8px 0',
     width: '100%',
