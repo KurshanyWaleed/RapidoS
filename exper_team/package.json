@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "i": "^0.3.6",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.4.1",
     "npm": "^7.20.6",

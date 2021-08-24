@@ -17,16 +17,19 @@ const AuthTeam = () => {
     const [CIN, setCin] = useState('')
     const [password, setPassword] = useState('')
     const [typeUser, setTypeUser] = useState('Admin')
+    const [notValid, setNotvalid] = useState(false)
     const history = useHistory();
 
     const handelForminputs = (e) => {
         e.preventDefault();
-        setLoading(true);
-        dispatch(loginUser(CIN, password, typeUser));
-        if (type === "Admin") history.push('/admin/addEmployee')
-        if (type === 'Empolyee') history.push(`/employees/home/${id}`);
-        console.log(typeUser)
-        setLoading(false);
+        if (CIN === '' && password === '') { setNotvalid(true) } else {
+            setLoading(true);
+            dispatch(loginUser(CIN, password, typeUser));
+            if (type === "Admin") history.push('/admin/addEmployee')
+            if (type === 'Empolyee') history.push(`/employees/home/${id}`);
+            console.log(typeUser)
+            setLoading(false);
+        }
     };
 
 
@@ -40,10 +43,11 @@ const AuthTeam = () => {
                     <div id="formContent">
                         <img style={{ margin: '10px' }} src="https://img.icons8.com/fluency/48/000000/key.png" />
                         {errorPass && <span style={{ color: 'red' }}>{errorPass}</span>}
-                        {errorEmail && <span>{errorEmail}</span>}
+                        {errorEmail && <span style={{ color: 'red' }} >{errorEmail}</span>}
+                        {notValid && <span>{'Remplir tous les champs'}</span>}
                         <form onSubmit={handelForminputs}>
-                            <input type="text" id="login" className="fadeIn second" name="login" placeholder="CIN" value={CIN} onChange={((e) => setCin(e.target.value))} />
-                            <input type="password" id="password" className="fadeIn third" name="login" placeholder="mot de passe" value={password} onChange={((e) => setPassword(e.target.value))} />
+                            <input type="text" id="login" className="fadeIn second" name="login" placeholder="CIN" value={CIN} onChange={((e) => { setCin(e.target.value) })} />
+                            <input type="password" id="password" className="fadeIn third" name="login" placeholder="mot de passe" value={password} onChange={((e) => { setPassword(e.target.value); })} />
                             <select className='select'
                                 onChange={(e) => { setTypeUser(e.target.value) }} value={typeUser}>
                                 <option selected value="Employee">Employee</option>

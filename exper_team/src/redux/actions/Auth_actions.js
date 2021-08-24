@@ -5,39 +5,43 @@ import jwtDecode from "jwt-decode";
 // Check token & load user
 export const loginUser = (CIN, password, typeUser) => (dispatch) => {
     // User loading
+
     dispatch({ type: Actions.USER_LOADING });
-
-
-
-    axios({
-        method: "post",
-        url: "http://localhost:5000/api/signin",
-        withCredentials: true,
-        data: {
-            CIN,
-            password,
-            type: typeUser
-        }
-
-    }).then((response) => {
-        console.log('err', response)
-
-        if (response.data.errors) { dispatch({ type: Actions.LOGIN_FAIL, payload: response.data }) }
-        else {
-            localStorage.setItem('token', response.data.token)
-            dispatch({
-                type: Actions.LOGIN_SUCCESS,
-                payload: response.data
-            })
-
-        }
-
-    }).catch((err) => {
+    console.log('here', CIN === '', password === '', CIN === '' && password === '')
+    if ((CIN === '' || password === '')) {
         dispatch({
             type: Actions.LOGIN_FAIL,
-            payload: "this is an err"
+
         });
-    });
+    } else {
+
+
+        axios({
+            method: "post",
+            url: "http://localhost:5000/api/signin",
+            withCredentials: true,
+            data: {
+                CIN,
+                password,
+                type: typeUser
+            }
+
+        }).then((response) => {
+            console.log('err', response)
+            if (response.data.errors) { dispatch({ type: Actions.LOGIN_FAIL, payload: response.data }) }
+            else {
+                localStorage.setItem('token', response.data.token)
+                dispatch({
+                    type: Actions.LOGIN_SUCCESS,
+                    payload: response.data
+                })
+
+            }
+
+        }).catch((err) => {
+
+        });
+    }
 }
 
 export const checkUsersigned = () => (dispatch) => {

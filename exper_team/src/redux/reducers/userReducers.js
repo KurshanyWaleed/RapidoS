@@ -29,7 +29,8 @@ export const getUserReducer = (state = initialState, action) => {
                 token: action.token,
                 isAuthenticated: true,
                 isLoading: false,
-                user: { id: action.user.data._id, name: action.user.data.name, type: action.user.data.type }
+                user: { id: action.user.data._id, name: action.user.data.name, type: action.user.data.type },
+                error: null
 
             };
 
@@ -40,12 +41,14 @@ export const getUserReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 isAuthenticated: true,
                 isLoading: false,
-                user: { id: action.payload.id, name: action.payload.name, type: action.payload.type }
+                user: { id: action.payload.id, name: action.payload.name, type: action.payload.type },
+                error: null
             };
         case Actions.AUTH_ERROR:
         case Actions.LOGIN_FAIL:
             return {
                 ...state,
+
                 isAuthenticated: false,
                 isLoading: false,
                 user: null,

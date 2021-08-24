@@ -14,7 +14,6 @@ module.exports.addEmployee = async (req, res) => {
     }
 };
 
-
 module.exports.getAllEmployees = async (req, res) => {
     // console.log(req.body)
     // const { CIN, name, gouvernarate, employeeState } = req.body;

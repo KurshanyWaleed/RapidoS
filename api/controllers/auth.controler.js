@@ -68,9 +68,10 @@ module.exports.signIn = async (req, res) => {
             const token = createToken({ _id, name });
             // res.cookie("jwt", token, { httpOnly: true, maxAge });
             res.status(201).send({ id: user._id, name: user.name, token: token, type: type });
-        } catch (erro) {
-            // const errors = signInErrors(err);
-            res.status(200).json({ erro });
+        } catch (err) {
+            const errors = signInErrors(err);
+            res.status(200).json({ errors });
+            // res.status(200).json({ errors: { password: 'mot de passe incorrect !', cin: '' } });
 
         }
     } else {

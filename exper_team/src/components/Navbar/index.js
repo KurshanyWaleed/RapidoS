@@ -22,6 +22,7 @@ const Nav = () => {
     e.preventDefault();
     //setValid(!valid)
     dispatch(logout())
+    history.push('/login')
 
 
 

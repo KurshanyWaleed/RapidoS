@@ -1,12 +1,19 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import jwt from 'jsonwebtoken';
 import {
     Button, Card
-} from 'react-bootstrap'
-
+} from 'react-bootstrap';
 
 function EmployeesList(props) {
 
+    const maxAge = 3 * 24 * 60 * 60 * 1000;
+    const createToken = (data) => {
+        return jwt.sign({ data }, 'process.env.TOKEN_SECRET', {
+            expiresIn: maxAge,
+        });
+    }
+    const cryptedID = createToken(props.id)
     const history = useHistory();
     const handleClick = (path) => history.push(path);
 
@@ -33,7 +40,7 @@ function EmployeesList(props) {
                 <Card.Text>
                     {props.gouvernerate}
                 </Card.Text>
-                <Button onClick={() => handleClick(`/admin/Employee/${props.id}`)} style={{ width: '100%' }} variant="outline-dark" size='sl'>Détails</Button>
+                <Button onClick={() => handleClick(`/admin/employee/details/${cryptedID}`)} style={{ width: '100%' }} variant="outline-dark" size='sl'>Détails</Button>
             </Card.Body>
         </Card >
 
@@ -43,6 +50,7 @@ function EmployeesList(props) {
 
 
     )
+
 }
 
 export default EmployeesList

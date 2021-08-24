@@ -13,7 +13,7 @@ import Loader from "react-loader-spinner";
 
 
 
-const AddEmployee = () => {
+const Home_admin = () => {
 
     const [name, setName] = useState("");
     const [gouvernarate, setGouvernarate] = useState("Tunis");
@@ -120,6 +120,7 @@ const AddEmployee = () => {
             <h1 >
                 Liste des employés
             </h1>
+            <hr style={{ width: '100%' }} />
             <div style={{ display: 'flex', width: '100vw', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
                 {
                     employeesL.map((emp, key) => {
@@ -137,4 +138,4 @@ const AddEmployee = () => {
     )
 }
 
-export default AddEmployee
+export default Home_admin
