@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { checkUsersigned } from './redux/actions/Auth_actions'
 import NotFound from './pages/notFound'
+import Tasks_details from './pages/Employee/Tasks_details'
 
 
 
@@ -24,39 +25,75 @@ function App() {
     dispatch(checkUsersigned());
   }, [dispatch]);
 
+  const RoutingEmployee = () => {
+    return (
+      <Switch>
+        <Route path='/home_emp' component={Home_emp} />
+        <Route path='/home_emp/tasks/details' exact component={Tasks_details} />
+      </Switch>
+    )
+  }
 
+  const RoutingAdmin = () => {
+    return (
+      <Switch>
+        <Route path='/admin/employee/details/:id' exact component={Employee_details} />
+        <Route path='/admin/Add_emp' exact component={Home_admin} />
+        <Route path="/login">
+          <Redirect to="/admin/Add_emp" />
+        </Route>
+      </Switch >
+    )
+  }
+
+
+  const Routing = () => {
+    return (
+      <Switch>
+        <Route path='/login' exact component={AuthTeam} />
+        <Route path='*'>
+          <Redirect to='/login' ></Redirect>
+        </Route>
+      </Switch>
+    )
+  }
 
   return (
     <div>
       <Router>
         <Navbar />
-        <Switch>
-          {
-            token === null ?
-              <>
-                <Route path='/login' exact component={AuthTeam} />
+        {
+          (!token && !type) ?
 
-              </> :
-              type === 'Employee' ?
-                <>
-                  <Route path='/Home_emp' exact component={Home_emp} />
-                  <Route path="/">
-                    <Redirect to="/Home_emp" />
-                  </Route>
+            <Switch>
+              <Route path='/login' exact component={AuthTeam} />
+              <Route path="/">
+                <Redirect to="/login" />
+              </Route>
+            </Switch>
 
-                </> :
-                <Switch>
-                  <Route path='/admin/employee/details/:id' exact component={Employee_details} />
-                  <Route path='/admin/Add_emp' exact component={Home_admin} />
-                  <Route path="/login">
-                    <Redirect to="/admin/Add_emp" />
-                  </Route>
-                  <Route path="/">
-                    <Redirect to="/admin/Add_emp" />
-                  </Route>
-                </Switch>
-          }
-        </Switch>
+            : ''}
+        {
+          type === 'Employee' ?
+            <Switch>
+              <Route path="/login">
+                <Redirect to="/home_emp" />
+              </Route>
+              <Route path='/home_emp' exact component={Home_emp} />
+              <Route path='/home_emp/tasks/details' exact component={Tasks_details} />
+              <Route component={NotFound} />
+            </Switch>
+            : ''}
+        {
+          !type ?
+            <Switch>
+              <Route path='/admin/employee/details/:id' exact component={Employee_details} />
+              <Route path='/admin/Add_emp' exact component={Home_admin} />
+              <Route path="/login">
+                <Redirect to="/admin/Add_emp" />
+              </Route>
+            </Switch > : ''}
+
       </Router>
     </div>
 

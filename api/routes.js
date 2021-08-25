@@ -4,7 +4,7 @@ const { signUp, signIn, signUpAdmin } = require('./controllers/auth.controler')
 const { addReq, getAllTasks } = require('./controllers/requests.controller')
 const { addEmployee, getAllEmployees, getEmployee } = require('./controllers/adminController/employee.controller')
 
-route.get('/allTasks', getAllTasks);
+route.post('/allTasks', getAllTasks);
 route.post('/signup_admin', signUpAdmin);
 route.post('/signin', signIn);
 route.post('/addRequest', addReq);

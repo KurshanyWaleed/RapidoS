@@ -44,7 +44,7 @@ export default function Login() {
       town,
       typeOfUser
     };
-    console.log(dataa);
+    console.log('the data:', dataa);
     axios({
       method: "post",
       url: "http://localhost:5000/api/signup",
@@ -70,8 +70,8 @@ export default function Login() {
       setTimeout(function () {
         setLoading(false)
         setValid(true);
-        window.location = "/connexion";
-      }, 5000);
+        window.location.reload();
+      }, 3000);
 
 
     });
@@ -155,22 +155,23 @@ export default function Login() {
 
       <div className="d-grid gap-2">
         <Button variant="primary" type="submit" size='lg'>
-          Valider
+          {loading ? (<div style={{ display: 'flex', alignItems: 'center', justifyContent: "center" }}>
+            <Loader type="ThreeDots"
+              color="gray"
+              height={35}
+              width={50}
+            />
+          </div>)
+            : ' Valider'
+          }
         </Button>
       </div>
-
-      {valid && (<div style={{ padding: "10px" }}>
+      {valid && (<div style={{ margin: "10px" }}>
         <Alert variant="success">
           Votre Profile Client a été creé !
         </Alert>
       </div>)}
-      {!loading && (<div style={{ padding: "10px auto", display: 'flex', alignItems: 'center', justifyContent: "center" }}>
-        <Loader type="ThreeDots"
-          color="gray"
-          height={50}
-          width={50}
-        />
-      </div>)}
+
     </Form>
 
 

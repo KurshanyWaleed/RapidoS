@@ -1,9 +1,15 @@
 import React from 'react'
+import './style.css'
 import { Alert } from 'react-bootstrap'
 const Tasks = ({ status, name, town, type, address }) => {
+    const handelClick = () => {
+
+        console.log('clicked ! ')
+
+    }
     return (
         <div>
-            <Alert variant={status === 'onDemand' ? "warning" : status === 'canceled' ? "dark" : "success"}>
+            <Alert className="Alert" variant={status === 'onDemand' ? "warning" : status === 'canceled' ? "dark" : "success"} onClick={handelClick}>
 
                 <Alert.Heading>type de problème  : {type}</Alert.Heading>
                 <hr />
@@ -14,11 +20,8 @@ const Tasks = ({ status, name, town, type, address }) => {
                     <br />
                     Adresse :  {address}
                 </p>
-                <hr />
-                <p className="mb-0">
-                    Whenever you need to, be sure to use margin utilities to keep things nice
-                    and tidy.
-                </p>
+
+
             </Alert>
         </div>
     )

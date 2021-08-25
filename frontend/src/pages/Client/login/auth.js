@@ -23,7 +23,7 @@ export default function Auth() {
                     background: '#fff',
                     width: '70%',
 
-                    height: '750px',
+                    height: '760px',
                     margin: '50px auto',
                     display: 'flex',
                     padding: '50px',

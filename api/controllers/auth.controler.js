@@ -16,7 +16,7 @@ module.exports.signUp = async (req, res) => {
     console.log(req.body)
     const { name, surname, email, password, address, tel, form, companyName, town, zip, gouvernarate } = req.body;
 
-
+    const UserModel = require('../models/users');
     try {
         const user = await UserModel.create({ name, surname, email, password, address, tel, form, companyName, town, zip, gouvernarate });
         res.status(201).json({ user: user._id });

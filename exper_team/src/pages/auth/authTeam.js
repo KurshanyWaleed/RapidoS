@@ -30,7 +30,7 @@ const AuthTeam = () => {
             dispatch(loginUser(CIN, password, typeUser));
             if (type === "Admin") history.push('/admin/addEmployee')
             if (type === 'Empolyee') {
-                history.push(`/employees/home/${id}`);
+                history.push('/home_emp');
                 //dispatch((loadTasks(id))
                 ;
             };

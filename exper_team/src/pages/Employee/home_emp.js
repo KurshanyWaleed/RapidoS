@@ -30,7 +30,7 @@ function Home_emp() {
             padding: '5rem',
         }}>
             <div style={{
-                width: '20%',
+                width: '30%',
                 height: '100vh',
                 background: 'white',
 
@@ -40,7 +40,7 @@ function Home_emp() {
 
 
             <div style={{
-                width: '60%',
+                width: '70%',
                 height: '100vh',
                 background: 'white',
 

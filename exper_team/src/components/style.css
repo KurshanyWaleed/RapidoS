@@ -1,0 +1,7 @@
+.Alert {
+  cursor: pointer;
+}
+
+.Alert:hover {
+  background-color: antiquewhite;
+}
