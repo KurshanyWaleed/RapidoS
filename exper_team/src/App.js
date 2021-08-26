@@ -76,16 +76,15 @@ function App() {
         {
           type === 'Employee' ?
             <Switch>
-              <Route path="/login">
-                <Redirect to="/home_emp" />
+              <Route path='/emp' exact component={Home_emp} />
+              <Route path='/tasks/details/:id' exact component={Tasks_details} />
+              <Route path="/">
+                <Redirect to="/emp" />
               </Route>
-              <Route path='/home_emp' exact component={Home_emp} />
-              <Route path='/home_emp/tasks/details' exact component={Tasks_details} />
-              <Route component={NotFound} />
             </Switch>
             : ''}
         {
-          !type ?
+          type == 'Admin' ?
             <Switch>
               <Route path='/admin/employee/details/:id' exact component={Employee_details} />
               <Route path='/admin/Add_emp' exact component={Home_admin} />

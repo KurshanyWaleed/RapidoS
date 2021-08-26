@@ -14,6 +14,7 @@ const Nav = () => {
   const style = {
     padding: '8px 0',
     width: '100%',
+    backgroundColor: "white",
     borderBottomStyle: 'solid',
     borderImage: 'linear-gradient(69deg, #fb8817, #ff4b01, #c12127, #e02aff) 3',
 
@@ -34,7 +35,7 @@ const Nav = () => {
 
   return (
     <>
-      <Navbar style={style}>
+      <Navbar style={style} fixed='top'>
         <Container>
           <Navbar.Brand style={{ color: 'orange' }} >
 
