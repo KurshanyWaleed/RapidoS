@@ -6,6 +6,7 @@ import { loadTasks } from '../../redux/actions/requestes-actions'
 function Home_emp() {
     const dispatch = useDispatch()
     const id = useSelector((state) => state.users.user ? state.users.user.id : null);
+    const name = useSelector((state) => state.users.user ? state.users.user.name : null);
     const tasks = useSelector((state) => state.requests ? state.requests.tasks : null)
     console.log('tasks from redux :', tasks, id)
 
@@ -34,9 +35,14 @@ function Home_emp() {
                 width: '20%',
                 height: '100vh',
                 background: 'white',
+                padding: '10px'
 
             }}>
-                <h1>Filters</h1>
+                <h3>Profile :  </h3>
+                <p>Nom : {name}</p>
+                <p>Ville</p>
+                <p>Status</p>
+                <p>Taches Disponible</p>
             </div>
 
 
@@ -48,8 +54,8 @@ function Home_emp() {
             }}>
                 <div style={{
                     position: 'relative',
-                    width: '100%',
-                    padding: '0px',
+                    width: '99%',
+                    padding: '20px',
                     height: '10%',
                     dispaly: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'auto',
 
@@ -62,7 +68,7 @@ function Home_emp() {
                 </div>
 
                 <h3 style={{
-                    border: '1px solid gray',
+
                     boxSizing: 'border-box',
                     display: 'inline-block',
                     backgroundColor: 'orange',
@@ -75,7 +81,7 @@ function Home_emp() {
                     lineHeight: 'inherit',
 
                 }}>En attente</h3>
-                <div style={{ display: 'flex', overflow: 'auto', border: '1px solid #8080803d', borderRadius: '5px' }}>
+                <div style={{ display: 'flex', overflow: 'auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
                     {tasks ? tasks.slice(0, 6).map((task, index) => {
 
                         return (task.status === 'onDemand' ?
@@ -92,10 +98,13 @@ function Home_emp() {
                             </>
                             : ''
                         )
-                    }) : 'pas des taches ! '
+                    }) : 'Il n y a pas de tâches pour le moment !'
 
                     }
-                    <button style={{ height: '50px', margin: '60px auto' }}>More</button>
+                    {tasks && <button style={{ height: '50px', margin: '60px auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>plus</button>
+                    }
+
+
                 </div>
                 <h3 style={{
                     boxSizing: 'border-box',
@@ -109,7 +118,7 @@ function Home_emp() {
                     padding: '.05rem .8rem .1rem',
                     lineHeight: 'inherit'
                 }}>Effectué</h3>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', overflow: 'auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
                     {tasks ? tasks.map((task, index) => {
 
                         return (task.status === 'Done' ?
@@ -124,10 +133,12 @@ function Home_emp() {
                             /> : ''
 
                         )
-                    }) : 'pas des taches ! '
+                    }) : 'Pas des Tâches encore ! '
 
                     }
-
+                    {tasks && <button style={{ height: '50px', margin: '60px auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
+                        plus</button>
+                    }
                 </div>
                 <h6 style={{
                     boxSizing: 'border-box',
@@ -143,7 +154,7 @@ function Home_emp() {
 
 
                 }}>Annulé</h6>
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', overflow: 'auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
                     {tasks ? tasks.map((task, index) => {
 
                         return (task.status === 'canceled' ?
@@ -155,13 +166,16 @@ function Home_emp() {
                                 town={task.town}
                                 type={task.typeOfIssue}
 
-                            /> : ''
+                            /> :
+                            ''
 
                         )
-                    }) : 'pas des taches ! '
+                    }) : <p>Pas des Tâches encore !</p>
 
                     }
 
+                    {tasks && <button style={{ height: '50px', margin: '60px auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>plus</button>
+                    }
                 </div>
 
             </div>

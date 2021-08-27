@@ -17,7 +17,7 @@ module.exports.getAllTasks = async (req, res) => {
             town: 1,
             typeOfIssue: 1,
             status: 1
-        });
+        }).sort({ createdAt: -1 });
         lng = tasks.length;
         res.status(200).json(tasks);
     } catch (err) {

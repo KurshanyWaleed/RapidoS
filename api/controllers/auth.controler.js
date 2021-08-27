@@ -65,7 +65,7 @@ module.exports.signIn = async (req, res) => {
             const user = await AdminModel.login(CIN, password);
             const { _id, name } = user;
             console.log('type : ', type);
-            const token = createToken({ _id, name });
+            const token = createToken({ _id, name, type });
             // res.cookie("jwt", token, { httpOnly: true, maxAge });
             res.status(201).send({ id: user._id, name: user.name, token: token, type: type });
         } catch (err) {
