@@ -11,7 +11,7 @@ import Room from '@material-ui/icons/Room';
 const Map = (props) => {
 
     useEffect(() => {
-        //        mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true);
+        //  mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true);
         return () => {
             //   mapboxgl.clearStorage();
         }
@@ -21,9 +21,9 @@ const Map = (props) => {
     const [viewport, setViewport] = useState({
         height: 200,
         width: 500,
-        latitude: 10,
-        longitude: 30,
-        zoom: 14
+        latitude: props.lat,
+        longitude: props.lng,
+        zoom: 8
     });
 
     return (
@@ -34,11 +34,11 @@ const Map = (props) => {
                 mapStyle="mapbox://styles/waledd/ckp1dyuin236917n0qx6geons"
                 onDblClick={props.onDblClick}
             >
-                {/* //     <Marker latitude={props.lat} longitude={props.lng} offsetLeft={-20} offsetTop={-50}>
-            //         <div>
-            //             <Room style={{ fontSize: 50 }} />
-            //         </div>
-            //     </Marker> */}
+                {<Marker latitude={props.lat} longitude={props.lng} offsetLeft={-20} offsetTop={-50}>
+                    <div>
+                        <Room style={{ fontSize: 50 }} />
+                    </div>
+                </Marker>}
             </ReactMapGL>
         </div >
 
