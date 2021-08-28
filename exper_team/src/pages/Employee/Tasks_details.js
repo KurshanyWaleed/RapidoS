@@ -10,20 +10,22 @@ const Tasks_details = () => {
     const lng = 36;
     console.log(decryptedId.id)
     return (
-        <div style={{ margin: '50px auto' }}>
-            <p>
-                details id :{decryptedId.id}
-            </p>
-            <p>
-                details name :{decryptedId.name}
-            </p>
-            <p>
-                details type :{decryptedId.type}
-            </p>
-            <p>
-                details town :  {decryptedId.town}
-            </p>
-            <Map width={900} height={250} lat={lat} lng={lng} />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <Map lat={lat} lng={lng} />
+            <div>
+                <p>
+                    details id :{decryptedId.id}
+                </p>
+                <p>
+                    details name :{decryptedId.name}
+                </p>
+                <p>
+                    details type :{decryptedId.type}
+                </p>
+                <p>
+                    details town :  {decryptedId.town}
+                </p>
+            </div>
         </div>
     )
 }

@@ -19,17 +19,17 @@ const Map = (props) => {
 
 
     const [viewport, setViewport] = useState({
-        height: 200,
-        width: 500,
+
         latitude: props.lat,
         longitude: props.lng,
         zoom: 8
     });
 
     return (
-        <div style={{ height: "100%", width: "800px" }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
-            <ReactMapGL {...viewport} mapboxApiAccessToken="pk.eyJ1Ijoid2FsZWRkIiwiYSI6ImNrcDE2N3l5MzB3azUyd21yYWJ6cmprODEifQ.Y9q08TELlzNWxl6V4kh5MA"
+            <ReactMapGL {...viewport} height='30rem'
+                width='70rem' mapboxApiAccessToken="pk.eyJ1Ijoid2FsZWRkIiwiYSI6ImNrcDE2N3l5MzB3azUyd21yYWJ6cmprODEifQ.Y9q08TELlzNWxl6V4kh5MA"
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapStyle="mapbox://styles/waledd/ckp1dyuin236917n0qx6geons"
                 onDblClick={props.onDblClick}
@@ -38,7 +38,8 @@ const Map = (props) => {
                     <div>
                         <Room style={{ fontSize: 50 }} />
                     </div>
-                </Marker>}
+                </Marker>
+                }
             </ReactMapGL>
         </div >
 
