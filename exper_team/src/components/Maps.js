@@ -4,16 +4,16 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 import Room from '@material-ui/icons/Room';
 
 
-//const mapboxgl = require('mapbox-gl');
+const mapboxgl = require('mapbox-gl');
+mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true);
 
 
 
 const Map = (props) => {
 
     useEffect(() => {
-        //  mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true);
         return () => {
-            //   mapboxgl.clearStorage();
+            mapboxgl.clearStorage();
         }
     }, [])
 
@@ -22,7 +22,7 @@ const Map = (props) => {
 
         latitude: props.lat,
         longitude: props.lng,
-        zoom: 8
+        zoom: 12
     });
 
     return (

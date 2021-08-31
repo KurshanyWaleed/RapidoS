@@ -7,13 +7,13 @@ import { Button, Row, Col } from 'react-bootstrap';
 const Tasks_details = () => {
     const { id } = useParams();
     const decryptedId = jwtDecode(id);
-    const lat = 10.0;
-    const lng = 36;
-    console.log(decryptedId.id)
+
+    console.log('dec is', decryptedId)
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <Map lat={lat} lng={lng} />
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'start', width: '50%', margin: '10px' }}>
+            <Map lat={decryptedId.lat} lng={decryptedId.lng} />
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'start', width: '50%', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px', padding: '5px' }}>
+
                 <span>
                     <b>
                         Pour Mr/Mdme :
@@ -35,12 +35,16 @@ const Tasks_details = () => {
 
 
             </div>
-            <div style={{ width: '50%' }}>
-
-                <button style={{ margin: '5px' }} type="button" class="btn btn-outline-success">Accepter la Mession</button>
-                <button style={{ margin: '5px' }} type="button" class="btn btn-outline-danger">Signaler un probleme</button>
-                <button style={{ margin: '5px' }} type="button" class="btn btn-outline-warning">Reporter</button>
-                <button type="button" class="btn btn-outline-info">Imprimer</button>
+            <div style={{ width: '50%', border: '1px solid #8080803d', borderRadius: '5px' }}>
+                {decryptedId.status === 'onDemand' ?
+                    <>
+                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-success">Accepter la Mession</button>
+                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-danger">Signaler un probleme</button>
+                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-warning">Reporter</button>
+                        <button type="button" class="btn btn-outline-info">Imprimer</button>
+                    </>
+                    : <button type="button" class="btn btn-outline-info">Imprimer</button>
+                }
 
             </div>
         </div>

@@ -93,6 +93,8 @@ function Home_emp() {
                                     name={task.name}
                                     town={task.town}
                                     type={task.typeOfIssue}
+                                    lat={task.lat}
+                                    lng={task.lng}
 
                                 />
                             </>

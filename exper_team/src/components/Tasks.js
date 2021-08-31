@@ -4,8 +4,8 @@ import './style.css'
 import { useHistory } from 'react-router-dom'
 import { Alert, Button } from 'react-bootstrap'
 
-const Tasks = ({ status, name, town, type, id }) => {
-    const cryptedId = jwt.sign({ id, name, town, type }, 'topSecret')
+const Tasks = ({ status, name, town, type, id, lat, lng }) => {
+    const cryptedId = jwt.sign({ id, name, town, type, status, lat, lng }, 'topSecret')
     const history = useHistory();
     console.log('rendering')
 
