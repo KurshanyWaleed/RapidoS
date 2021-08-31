@@ -6,6 +6,9 @@ export const LOADED_TASKS_FAIL = 'LOADED_TASKS_FAIL';
 export const UPDATE_TASKS = 'UPDATE_TASKS';
 export const UPDATE_TASKS_FAIL = 'UPDATE_TASKS_FAIL';
 
+export const UPDATE_TASKS_STATUS = 'UPDATE_TASKS';
+export const UPDATE_TASKS_STATUS_FAIL = 'UPDATE_TASKS_FAIL';
+
 
 // ! User & auth  Actions
 export const USER_LOADING = "USER_LOADING";

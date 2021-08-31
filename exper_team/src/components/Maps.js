@@ -5,7 +5,7 @@ import Room from '@material-ui/icons/Room';
 
 
 const mapboxgl = require('mapbox-gl');
-mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true);
+if (mapboxgl.getRTLTextPluginStatus() !== 'loaded') { mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js', null, true); }
 
 
 

@@ -20,3 +20,27 @@ export const loadTasks = (id) => (dispatch) => {
 
     });
 }
+export const updateTaskStatus = (task_id, newStatus) => (dispatch) => {
+    const data = {
+        id: task_id,
+        newStatus: newStatus
+    }
+    axios({
+        method: "post",
+        url: `http://localhost:5000/api/update_task`,
+        data,
+        withCredentials: true
+    }).then((res) => {
+        console.log('response de tasks : ', res)
+        dispatch({ type: Actions.UPDATE_TASKS_STATUS })
+        dispatch({ type: Actions.LOADING_TASKS })
+
+    }
+    ).catch((err) => {
+        dispatch({ type: Actions.UPDATE_TASKS, payload: err })
+
+    });
+
+
+
+}

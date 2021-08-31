@@ -17,7 +17,7 @@ const Tasks = ({ status, name, town, type, id, lat, lng }) => {
         }
 
         }>
-            < Alert onClick={() => { console.log('clicked',); history.push(`/tasks/details/${cryptedId}}`) }} className="Alert" variant={status === 'onDemand' ? "warning" : status === 'canceled' ? "dark" : "success"} >
+            < Alert onClick={() => { console.log('clicked',); history.push(`/tasks/details/${cryptedId}}`) }} className="Alert" variant={status === 'onDemand' ? "warning" : status === 'Done' ? "dark" : "success"} >
 
                 <Alert.Heading>Type : {type}</Alert.Heading>
                 <hr />

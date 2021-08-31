@@ -28,10 +28,15 @@ const RequestReducer = (state = initialState, action) => {
             }
         case Actions.LOADED_TASKS_FAIL:
             return {};
-        case Actions.UPDATE_TASKS:
-            return {};
+        case Actions.UPDATE_TASKS_STATUS:
+            return {
+                ...state
+            };
         case Actions.UPDATE_TASKS_FAIL:
-            return {};
+            return {
+                ...state,
+                error: action.payload
+            };
         default: return state;
 
     }

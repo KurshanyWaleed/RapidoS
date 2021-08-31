@@ -119,11 +119,13 @@ function Home_emp() {
                     fontWeight: '400',
                     padding: '.05rem .8rem .1rem',
                     lineHeight: 'inherit'
-                }}>Effectué</h3>
-                <div style={{ display: 'flex', overflow: 'auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
+                }}>En cours ...</h3>
+                <div style={{
+                    display: 'flex', alignItems: 'start', alignContent: 'stretch', flexDirection: 'row', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px'
+                }}>
                     {tasks ? tasks.map((task, index) => {
 
-                        return (task.status === 'Done' ?
+                        return (task.status === 'inProcess' ?
                             < Tasks
                                 id={task._id}
                                 key={index}
@@ -131,6 +133,8 @@ function Home_emp() {
                                 name={task.name}
                                 town={task.town}
                                 type={task.typeOfIssue}
+                                lat={task.lat}
+                                lng={task.lng}
 
                             /> : ''
 
@@ -138,9 +142,8 @@ function Home_emp() {
                     }) : 'Pas des Tâches encore ! '
 
                     }
-                    {tasks && <button style={{ height: '50px', margin: '60px auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
-                        plus</button>
-                    }
+
+
                 </div>
                 <h6 style={{
                     boxSizing: 'border-box',
@@ -155,11 +158,11 @@ function Home_emp() {
                     lineHeight: 'inherit',
 
 
-                }}>Annulé</h6>
+                }}>Terminé</h6>
                 <div style={{ display: 'flex', overflow: 'auto', margin: '10px', border: '1px solid #8080803d', borderRadius: '5px' }}>
                     {tasks ? tasks.map((task, index) => {
 
-                        return (task.status === 'canceled' ?
+                        return (task.status === 'Done' ?
                             < Tasks
                                 id={task._id}
                                 key={index}
@@ -167,6 +170,8 @@ function Home_emp() {
                                 name={task.name}
                                 town={task.town}
                                 type={task.typeOfIssue}
+                                lat={task.lat}
+                                lng={task.lng}
 
                             /> :
                             ''

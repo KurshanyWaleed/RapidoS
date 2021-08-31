@@ -29,7 +29,24 @@ module.exports.getAllTasks = async (req, res) => {
 
 
 
+module.exports.updateTask = async (req, res) => {
+    try {
+        await ReqModel.findByIdAndUpdate(
+            req.body.id,
+            { $set: { status: req.body.newStatus } },
+            { new: true, upsert: true, setDefaultsOnInsert: true },
+            (err, docs) => {
+                if (!err) return res.send(docs);
+                else return res.status(500).send({ message: err });
+            }
+        );
 
+
+    } catch (err) {
+        err => { console.log(err) }
+
+    }
+}
 module.exports.addReq = async (req, res) => {
 
     const { name,

@@ -1,12 +1,22 @@
 import React from 'react'
-import jwt from 'jsonwebtoken';
+import { useDispatch, useSelector } from 'react-redux';
 import jwtDecode from "jwt-decode";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Map from '../../components/Maps';
-import { Button, Row, Col } from 'react-bootstrap';
+import { updateTaskStatus } from '../../redux/actions/requestes-actions'
 const Tasks_details = () => {
     const { id } = useParams();
     const decryptedId = jwtDecode(id);
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const handelClick = (newStatus) => {
+
+        dispatch(updateTaskStatus(decryptedId.id, newStatus))
+        history.goBack();
+
+
+    }
 
     console.log('dec is', decryptedId)
     return (
@@ -35,15 +45,20 @@ const Tasks_details = () => {
 
 
             </div>
-            <div style={{ width: '50%', border: '1px solid #8080803d', borderRadius: '5px' }}>
+            <div style={{ width: '50%', border: '1px solid #8080803d', borderRadius: '5px', padding: '5px' }}>
                 {decryptedId.status === 'onDemand' ?
                     <>
-                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-success">Accepter la Mession</button>
-                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-danger">Signaler un probleme</button>
+                        <button onClick={() => handelClick("inProcess")} style={{ margin: '5px' }} type="button" class="btn btn-outline-success">Accepter la Mession</button>
+                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-danger">Signaler un problème</button>
                         <button style={{ margin: '5px' }} type="button" class="btn btn-outline-warning">Reporter</button>
                         <button type="button" class="btn btn-outline-info">Imprimer</button>
                     </>
-                    : <button type="button" class="btn btn-outline-info">Imprimer</button>
+                    :
+                    <>
+                        <button onClick={() => handelClick("onDemand")} type="button" class="btn btn-warning">Annuler la Mession</button>
+                        <button style={{ margin: '5px' }} type="button" class="btn btn-outline-danger">Signaler un problème</button>
+                        <button type="button" class="btn btn-outline-info">Imprimer</button>
+                    </>
                 }
 
             </div>
